@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+
+base_dir=$(cd `dirname $0`/..; pwd)
+test_dir=${base_dir}/test
+build_dir=${base_dir}/build
+logger_dir=${base_dir}/src/logger
+
+# # 1. 构建
+cd ${base_dir}
+cmake -B build -S .
+cmake --build build
+cd ${base_dir}/bin
+
+# 2. 运行
+echo "
+
+
+---------------------------------------------------------------"
+./test_config
+
+# 3. 清理
+# rm -rf *.o ${target_file}  ${test_file} 
+rm -rf ./test_config
