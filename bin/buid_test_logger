@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+
+base_dir=$(cd `dirname $0`/..; pwd)
+test_dir=${base_dir}/test
+build_dir=${base_dir}/build
+logger_dir=${base_dir}/src/logger
+
+
+# echo "base_dir: ${base_dir}"
+# echo "logger_dir: ${logger_dir}"
+# echo "test_dir: ${test_dir}"
+# echo "build_dir: ${build_dir}"
+
+source_dir=${logger_dir}
+source_files="logger.cc log_level.cc log_event.cc log_appender.cc log_formatter.cc"
+test_file="test_logger.cc"
+target_file="test"
+
+header_dir=${source_dir}
+object_files=${source_files//.cc/.o}
+
+# # 1. 构建
+cd ${logger_dir}
+g++ -std=c++11 -c ${source_files}
+mv ${object_files} ${build_dir}
+cp ${test_dir}/${test_file} ${build_dir}
+cd ${build_dir}
+g++ -g -std=c++11 -o ${target_file} ${test_file} ${object_files} -I ${header_dir}
+
+# 2. 运行
+./${target_file}
+
+# 3. 清理
+# rm -rf *.o ${target_file}  ${test_file} 
+rm -rf *.o ${test_file}
