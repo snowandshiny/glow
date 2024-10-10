@@ -5,6 +5,7 @@ base_dir=$(cd `dirname $0`/..; pwd)
 test_dir=${base_dir}/test
 build_dir=${base_dir}/build
 logger_dir=${base_dir}/src/logger
+util_dir=${base_dir}/src/util
 
 
 # echo "base_dir: ${base_dir}"
@@ -13,16 +14,17 @@ logger_dir=${base_dir}/src/logger
 # echo "build_dir: ${build_dir}"
 
 source_dir=${logger_dir}
-source_files="logger.cc log_level.cc log_event.cc log_appender.cc log_formatter.cc"
+source_files="logger.cc log_level.cc log_event.cc log_appender.cc log_formatter.cc log_manager.cc ../util/util.cc"
 test_file="test_logger.cc"
 target_file="test"
 
 header_dir=${source_dir}
-object_files=${source_files//.cc/.o}
+# object_files=${source_files//.cc/.o}
+object_files="logger.o log_level.o log_event.o log_appender.o log_formatter.o log_manager.o util.o"
 
 # # 1. 构建
 cd ${logger_dir}
-g++ -std=c++11 -c ${source_files}
+g++ -std=c++11 -c ${source_files} -I ${util_dir}
 mv ${object_files} ${build_dir}
 cp ${test_dir}/${test_file} ${build_dir}
 cd ${build_dir}

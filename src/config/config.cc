@@ -1,0 +1,1 @@
+namespace glow {}  // namespace glow

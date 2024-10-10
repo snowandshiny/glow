@@ -13,15 +13,29 @@ class LoggerManager {
    public:
     // TODO
     // typedef Spinlock MutexType;
+
+    /**
+     * @brief 构造函数
+     */
     LoggerManager();
+
     // 获取名称为name的日志器
     // 如果name不存在，则创建一个，并使用root配置
     Logger::ptr getLogger(const std::string& name);
 
+    /**
+     * @brief 初始化
+     */
     void init();
+
+    /**
+     * @brief 返回主日志器
+     */
     Logger::ptr getRoot() const { return m_root; }
 
-    // 转成yaml格式的配置
+    /**
+     * @brief 将所有的日志器配置转成YAML String
+     */
     std::string toYamlString();
 
    private:

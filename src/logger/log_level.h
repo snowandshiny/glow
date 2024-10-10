@@ -1,6 +1,8 @@
 #ifndef GLOW_LOG_LEVEL_H
 #define GLOW_LOG_LEVEL_H
 
+#include <string>
+
 namespace glow {
 // 一般来说就是用枚举的方式来定义
 class LogLevel {
@@ -14,8 +16,17 @@ class LogLevel {
         FATAL = 5    // 灾难级信息
     };
 
-    // 格式化日志级别
+    /**
+     * @brief 将日志级别转成文本输出
+     * @param[in] level 日志级别
+     */
     static const char* ToString(LogLevel::Level level);
+
+    /**
+     * @brief 将文本转换成日志级别
+     * @param[in] str 日志级别文本
+     */
+    static LogLevel::Level FromString(const std::string& str);
 };
 }  // namespace glow
 

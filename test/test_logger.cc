@@ -28,7 +28,8 @@ void test_log_formatter() {
                                      1234567,         // 运行时间
                                      tid,             // 线程ID
                                      0,               // 协程ID
-                                     time(0)          // 当前时间
+                                     time(0),         // 当前时间
+                                     "thread_name"    // 线程名称
                                      ));
 
     LogFormatter::ptr formatter(new LogFormatter(
@@ -55,8 +56,8 @@ int main(int argc, char** argv) {
                                      1234567,         // 运行时间
                                      tid,             // 线程ID
                                      0,               // 协程ID
-                                     time(0)          // 当前时间
-                                     ));
+                                     time(0),         // 当前时间
+                                     "thread_name"));
 
     LogFormatter::ptr formatter(new LogFormatter(
         "%d{%Y-%m-%d %H:%M:%S}%T%t%T%F%T[%p]%T[%c]%T%f:%l%T%m%n"));
