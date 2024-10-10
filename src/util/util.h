@@ -9,6 +9,16 @@
 #include <string>
 
 namespace glow {
+/**
+ * @brief 返回当前线程的ID
+ */
+pid_t GetThreadId();
+
+/**
+ * @brief 返回当前协程的ID
+ */
+uint32_t GetFiberId();
+
 class FSUtil {
    public:
     // static void ListAllFile(std::vector<std::string>& files,

@@ -12,6 +12,7 @@
 #include "log_formatter.h"
 #include "log_level.h"
 #include "logger.h"
+#include "util.h"
 
 /**
  * @brief 使用流式方式将日志级别level的日志写入到logger

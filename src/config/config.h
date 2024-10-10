@@ -9,6 +9,9 @@
 #include "boost/lexical_cast.hpp"
 
 namespace glow {
+/*
+* @brief 配置项基类
+*/
 class ConfigVarBase {
    public:
     typedef std::shared_ptr<ConfigVarBase> ptr;
@@ -28,8 +31,8 @@ class ConfigVarBase {
     virtual std::string getTypeName() const = 0;
 
    protected:
-    std::string m_name;
-    std::string m_description;
+    std::string m_name;               // 配置项名称
+    std::string m_description;        // 配置项描述
 };
 
 // 使用模板类来实现不同值类型的子类
@@ -70,7 +73,7 @@ class ConfigVar : public ConfigVarBase {
     std::string getTypeName() const override { return typeid(T).name(); }
 
    private:
-    T m_val;
+    T m_val;          // 配置项的值
 };
 
 class Config {

@@ -8,18 +8,26 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <sstream>
+#include <thread>
+#include <iostream>
 
 namespace glow {
 
 // static sylar::Logger::ptr g_logger = SYLAR_LOG_NAME("system");
 
-// pid_t GetThreadId() {
-//     return syscall(SYS_gettid);
-// }
+pid_t GetThreadId() {
+    // 获取线程ID
+    std::stringstream ss;
+    ss << std::this_thread::get_id();
+    pid_t tid = static_cast<pid_t>(std::stoull(ss.str()));
+    return tid;
+}
 
-// uint32_t GetFiberId() {
-//     return sylar::Fiber::GetFiberId();
-// // }
+uint32_t GetFiberId() {
+    // TODO
+    return 0;
+}
 
 // static std::string demangle(const char* str) {
 //     size_t size = 0;
